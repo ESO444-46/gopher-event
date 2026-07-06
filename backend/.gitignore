@@ -6,3 +6,4 @@ package-lock.json
 _notes/
 sample.js
 prisma/seed.js
+dist/
