@@ -31,7 +31,7 @@ const LandingPage = () => {
           <ul className="nav-links">
             <li><a href="#value">Why it exists</a></li>
             <li><a href="#features">What it does</a></li>
-            <li><a href="#how">How it works</a></li>
+            <li><a href="#how">How it works </a></li>
           </ul>
           <div className="nav-cta">
             <Link to="/events" className="btn btn-primary" style={{ padding: "10px 20px", fontSize: "14px" }}>
