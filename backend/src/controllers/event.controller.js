@@ -1,7 +1,9 @@
 const eventSchema = require('../schemas/event.schema')
 const eventService = require('../services/event.service')
 const userService = require('../services/userEvent.service')
+const generateEmbedding = require("../utils/embedding")
 const SendEmail = require('../utils/email')
+const { date } = require('zod')
 
 async function createEvent(req, res) {
     const result = eventSchema.createEvent.safeParse(req.body)
@@ -12,30 +14,26 @@ async function createEvent(req, res) {
         })
     }
 
-    const {
-        title,
-        description,
-        venue,
-        startsAt,
-        endsAt,
-        thumbnailUrl,
-        bannerUrl
-    } = result.data
-
     const validatedData = {
-        title,
-        description,
-        venue,
-        startsAt,
-        endsAt,
-        thumbnailUrl,
-        bannerUrl,
+        ...result.data,
         creatorId: req.user.userId
-    }
+    };
+
+    const formattedDate = new Date(validatedData.startsAt).toLocaleString('en-US', {
+        dateStyle: 'full',
+        timeStyle: 'short'
+    })
+
+    const context = `
+    Title: ${validatedData.title}
+    Venue: ${validatedData.venue}
+    Date: ${formattedDate}
+    Description: ${validatedData.description}
+    `;
 
     try {
-
-        const event = await eventService.createEvent(validatedData)
+        const embedding = await generateEmbedding(context, 'RETRIEVAL_DOCUMENT')
+        const event = await eventService.createEvent({ ...validatedData, embedding })
 
         const { title } = event
         const { error } = await SendEmail({

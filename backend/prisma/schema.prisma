@@ -7,11 +7,13 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../node_modules/.prisma/client" // Add this back in
+  previewFeatures = ["postgresqlExtensions"]
 }
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  extensions = [vector]
 }
 
 model User {
@@ -56,10 +58,15 @@ model Event {
   // Metadata
   createdAt DateTime @default(now())
 
+  // Rsvp & Capacity
+  totalRSVPs Int  @default(50)
+  capacity Int  @default(0)
+
   // Ownership
   creatorId Int
   creator   User @relation(fields: [creatorId], references: [id], onDelete: Cascade)
 
+  embedding Unsupported("vector(1536)")?
   // Attendance
   userLinks UserEvent[]
 
