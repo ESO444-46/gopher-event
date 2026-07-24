@@ -12,7 +12,7 @@ const VerifyEmail = () => {
   const [isLoading, setLoading] = useState(false)
   const { showToast } = useToast()
 
-  const email = location.state?.email || "you@example.com"
+  const email = location.state?.email || "yourname@umn.edu"
   const { inputsRef, handleInput, handleKeyDown, handlePaste } = useOtpInputs();
 
   const verifyOtp = async function(event){
