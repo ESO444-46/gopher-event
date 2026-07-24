@@ -3,7 +3,34 @@ const eventService = require('../services/event.service')
 const userService = require('../services/userEvent.service')
 const generateEmbedding = require("../utils/embedding")
 const SendEmail = require('../utils/email')
-const { date } = require('zod')
+
+const escapeHtml = (value) => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;')
+
+const formatEventStart = (value) => {
+    const start = new Date(value)
+    const options = { timeZone: 'America/Chicago' }
+
+    return {
+        date: start.toLocaleDateString('en-US', {
+            ...options,
+            weekday: 'long',
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        }),
+        time: start.toLocaleTimeString('en-US', {
+            ...options,
+            hour: 'numeric',
+            minute: '2-digit',
+            timeZoneName: 'short'
+        })
+    }
+}
 
 async function createEvent(req, res) {
     const result = eventSchema.createEvent.safeParse(req.body)
@@ -36,10 +63,14 @@ async function createEvent(req, res) {
         const event = await eventService.createEvent({ ...validatedData, embedding })
 
         const { title } = event
+        const { date: eventDate, time: eventTime } = formatEventStart(event.startsAt)
+        const eventTitle = escapeHtml(title)
+        const eventVenue = escapeHtml(event.venue)
         const { error } = await SendEmail({
             to: req.user.email,
-            subject: `Event Created - ${title}`,
-            text: `Hey! Your event "${title}" is now live on GopherEvents. Start sharing it with your campus!`
+            subject: `Your event is live: ${title}`,
+            text: `Your event ${title} is now live on Gopher Events.\n\nWhen: ${eventDate} at ${eventTime}\nWhere: ${event.venue}\n\nStart sharing it with your campus!`,
+            html: `<div style="margin:0;padding:32px 16px;background:#FAF6EE;font-family:Arial,sans-serif;color:#2A2320;"><div style="max-width:600px;margin:0 auto;background:#FFFDF9;border:1px solid #E4DACB;border-radius:16px;overflow:hidden;"><div style="padding:28px 32px;background:#7A0019;border-bottom:4px solid #FFC72C;"><p style="margin:0;color:#FFC72C;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Gopher Events</p><h1 style="margin:10px 0 0;color:#FFFDF9;font-family:Georgia,serif;font-size:28px;line-height:1.2;">Your event is live.</h1></div><div style="padding:32px;"><p style="margin:0 0 24px;font-size:16px;line-height:1.6;">Your event is ready to share with the campus.</p><div style="padding:20px;border:1px solid #E4DACB;border-radius:12px;background:#FAF6EE;"><p style="margin:0 0 16px;color:#7A0019;font-family:Georgia,serif;font-size:20px;font-weight:700;">${eventTitle}</p><p style="margin:0 0 8px;font-size:15px;line-height:1.5;"><strong>When</strong><br>${eventDate} · ${eventTime}</p><p style="margin:0;font-size:15px;line-height:1.5;"><strong>Where</strong><br>${eventVenue}</p></div><p style="margin:24px 0 0;color:#6b5f56;font-size:14px;line-height:1.6;">Start sharing it with your campus.</p></div></div></div>`
         });
 
         if (error) console.error("Email error occured", error)
@@ -186,10 +217,32 @@ async function registerUserForEvent(req, res) {
             publicId: result.data.publicId
         })
 
+        const { date: eventDate, time: eventTime } = formatEventStart(registration.event.startsAt)
+        const eventTitle = escapeHtml(registration.event.title)
+        const eventVenue = escapeHtml(registration.event.venue)
+
         const { error } = await SendEmail({
             to: req.user.email,
-            subject: `RSVP Confirmed - ${registration.event.title}`,
-            text: `Hey! You're confirmed for "${registration.event.title}" on ${registration.event.startsAt}. See you there!`
+            subject: `You're registered: ${registration.event.title}`,
+            text: `You're confirmed for ${registration.event.title}.\n\nWhen: ${eventDate} at ${eventTime}\nWhere: ${registration.event.venue}\n\nSee you there!\nGopher Events`,
+            html: `
+              <div style="margin:0;padding:32px 16px;background:#FAF6EE;font-family:Arial,sans-serif;color:#2A2320;">
+                <div style="max-width:600px;margin:0 auto;background:#FFFDF9;border:1px solid #E4DACB;border-radius:16px;overflow:hidden;">
+                  <div style="padding:28px 32px;background:#7A0019;border-bottom:4px solid #FFC72C;">
+                    <p style="margin:0;color:#FFC72C;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Gopher Events</p>
+                    <h1 style="margin:10px 0 0;color:#FFFDF9;font-family:Georgia,serif;font-size:28px;line-height:1.2;">You’re on the list.</h1>
+                  </div>
+                  <div style="padding:32px;">
+                    <p style="margin:0 0 24px;font-size:16px;line-height:1.6;">Your spot for <strong>${eventTitle}</strong> is confirmed.</p>
+                    <div style="padding:20px;border:1px solid #E4DACB;border-radius:12px;background:#FAF6EE;">
+                      <p style="margin:0 0 16px;color:#7A0019;font-family:Georgia,serif;font-size:20px;font-weight:700;">${eventTitle}</p>
+                      <p style="margin:0 0 8px;font-size:15px;line-height:1.5;"><strong>When</strong><br>${eventDate} · ${eventTime}</p>
+                      <p style="margin:0;font-size:15px;line-height:1.5;"><strong>Where</strong><br>${eventVenue}</p>
+                    </div>
+                    <p style="margin:24px 0 0;color:#6b5f56;font-size:14px;line-height:1.6;">We’ll see you there.</p>
+                  </div>
+                </div>
+              </div>`
         });
 
         if (error) console.error("Error sending email", error)
