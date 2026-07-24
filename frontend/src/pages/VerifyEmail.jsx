@@ -50,11 +50,11 @@ const VerifyEmail = () => {
 
   return (
     
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-sm">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+    <div className="auth-page min-h-screen flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <div className="w-full max-w-5xl">
+        <div className="auth-card verify-card rounded-2xl overflow-hidden">
           {/* Header Banner */}
-          <div className="bg-[#7a0019] px-8 py-8 text-center">
+          <div className="auth-brand px-8 py-8 text-center">
             <div className="mx-auto h-14 w-14 bg-white rounded-xl flex items-center justify-center shadow-lg mb-3">
               <span className="text-[#7a0019] font-bold text-xl">M</span>
             </div>

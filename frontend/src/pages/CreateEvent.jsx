@@ -54,7 +54,7 @@ const CreateEvent = () => {
         }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="create-event-page min-h-screen">
       
       {/* Top Nav */}
       <TopNav/>
@@ -64,12 +64,13 @@ const CreateEvent = () => {
         
         {/* Page Header */}
         <div className="mb-8">
-          <h1 className="font-sans text-2xl font-bold text-gray-900">Create Event</h1>
-          <p className="mt-1 text-gray-500 text-sm">Fill in the details for your campus event</p>
+          <p className="page-kicker mb-2">Host an event</p>
+          <h1 className="font-display text-3xl font-semibold text-maroon">Create Event</h1>
+          <p className="page-subtitle mt-2 text-sm">Fill in the details for your campus event.</p>
         </div>
 
         {/* Form Card */}
-        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 sm:p-8">
+        <div className="create-event-card rounded-2xl p-6 sm:p-8">
           <form onSubmit = {handleSubmission}className="space-y-6">
             
             {/* Title */}

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import api from "../api/axios";
 import { useToast } from "../context/ToastContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [isLoading, setLoading] = useState(false)
@@ -55,14 +55,14 @@ async function loginRequest(event){
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-sm">
+    <div className="auth-page min-h-screen flex items-center justify-center px-4 py-6 sm:px-6 lg:px-8 lg:py-10">
+      <div className="w-full max-w-5xl">
         
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="auth-card login-card rounded-2xl overflow-hidden">
           
           {/* Header */}
-          <div className="bg-[#7a0019] px-8 py-8 text-center">
+          <div className="auth-brand px-8 py-8 text-center">
             <div className="mx-auto h-14 w-14 bg-white rounded-xl flex items-center justify-center shadow-lg mb-3">
               <span className="text-[#7a0019] font-bold text-xl">M</span>
             </div>
@@ -138,6 +138,9 @@ async function loginRequest(event){
               </button>
 
             </form>
+            <p className="mt-6 text-center text-sm text-ink-soft">
+              New to Gopher Events? <Link to="/signup" className="font-semibold text-maroon">Create an account</Link>
+            </p>
           </div>
         </div>
       </div>

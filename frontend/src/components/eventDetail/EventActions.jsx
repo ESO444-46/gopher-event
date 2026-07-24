@@ -4,11 +4,11 @@ import api from "../../api/axios";
 import { useToast } from "../../context/ToastContext";
 import CapacityDisplay from "../../pages/CapacityDisplay";
 
-const EventActions = ({ eventId, publicId }) => {
+const EventActions = ({ eventId, publicId, capacity, totalRSVPs }) => {
   const [loading, setLoading] = useState(false);
   const [rsvp, setRsvp] = useState(false);
   const { showToast } = useToast();
-
+  
   async function handleRsvp() {
     setLoading(true);
     try {
@@ -70,7 +70,7 @@ const EventActions = ({ eventId, publicId }) => {
             </>
           )}
         </button>
-        <CapacityDisplay registered={10} capacity={40}/>
+        <CapacityDisplay registered={totalRSVPs} capacity={capacity}/>
       </div>
     </div>
   );

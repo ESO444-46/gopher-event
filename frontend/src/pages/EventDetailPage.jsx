@@ -50,7 +50,7 @@ const EventDetailPage = () => {
       />
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Left Column */}
@@ -83,6 +83,8 @@ const EventDetailPage = () => {
               <EventActions
               publicId={publicId}
               eventId={details.id}
+              totalRSVPs = {details.totalRSVPs}
+              capacity = {details.capacity}
               />
             </div>
           </div>

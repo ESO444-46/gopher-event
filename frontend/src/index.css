@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@source "./";
+@source "./**/*.{js,jsx}";
 
 /* Aliases onto the GopherEvents palette defined in styles/global.css (:root),
    so app-wide components can opt into it via plain utility classes
