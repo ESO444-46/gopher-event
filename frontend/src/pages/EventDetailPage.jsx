@@ -7,7 +7,7 @@ import EventDetailLoader from "../components/eventDetail/EventDetailLoader";
 import api from "../api/axios";
 
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import CapacityDisplay from "./CapacityDisplay";
 
 const EventDetailPage = () => {
@@ -16,7 +16,7 @@ const EventDetailPage = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
   }, [publicId]);
 
