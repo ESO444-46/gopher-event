@@ -17,6 +17,10 @@ const EventDetailPage = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [publicId]);
+
+  useEffect(() => {
       async function fetchEvent(){
         try{
 
