@@ -85,7 +85,7 @@ const CreateEvent = () => {
                 onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 required
-                placeholder="e.g., UMN Hackathon 2026"
+                placeholder="e.g., Community Hackathon 2026"
                 className="block w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7a0019] focus:border-[#7a0019] transition-colors sm:text-sm"
               />
             </div>

@@ -10,7 +10,7 @@ const TopNav = () => {
                 <div className="brand-mark h-8 w-8 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-sm">M</span>
                 </div>
-                <span className="brand-name font-semibold">Gopher Events</span>
+                <span className="brand-name font-semibold">Gopher Event</span>
               </div>
             </div>
         </header>

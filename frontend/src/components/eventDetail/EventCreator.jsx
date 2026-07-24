@@ -1,11 +1,9 @@
 const EventCreator = ({firstName,lastName}) => {
   return (
-    <div>
-      <h2 className="font-sans text-xl font-bold text-ink mb-4">Organized by</h2>
-      <div className="pt-4"></div>
+    <section className="event-detail-section">
+      <h2 className="event-detail-heading">Organized by</h2>
 
-
-      <div className="flex items-center gap-4">
+      <div className="event-detail-organizer flex items-center gap-4">
         <div className="h-14 w-14 rounded-full bg-gradient-to-br from-maroon to-gold flex items-center justify-center flex-shrink-0">
           <span className="text-white font-bold text-lg">{`${firstName[0]}${lastName[0]}`}</span>
         </div>
@@ -14,7 +12,7 @@ const EventCreator = ({firstName,lastName}) => {
           <p className="text-ink-soft text-sm">Event Organizer</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

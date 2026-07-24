@@ -85,13 +85,13 @@ async function sendVerificationOtp(email) {
     const record = await otpRepo.saveOtp({ email, otpCode, expiresAt });
     await SendEmail({
         to: email,
-        subject: "Verify your Gopher Events account",
-        text: `Your Gopher Events verification code is ${otpCode}. It expires in 15 minutes. If you did not request this code, you can ignore this email.`,
+        subject: "Verify your Gopher Event account",
+        text: `Your Gopher Event verification code is ${otpCode}. It expires in 15 minutes. If you did not request this code, you can ignore this email.`,
         html: `
           <div style="margin:0;padding:32px 16px;background:#FAF6EE;font-family:Arial,sans-serif;color:#2A2320;">
             <div style="max-width:600px;margin:0 auto;background:#FFFDF9;border:1px solid #E4DACB;border-radius:16px;overflow:hidden;">
               <div style="padding:28px 32px;background:#7A0019;border-bottom:4px solid #FFC72C;">
-                <p style="margin:0;color:#FFC72C;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Gopher Events</p>
+                <p style="margin:0;color:#FFC72C;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Gopher Event</p>
                 <h1 style="margin:10px 0 0;color:#FFFDF9;font-family:Georgia,serif;font-size:28px;line-height:1.2;">Verify your email.</h1>
               </div>
               <div style="padding:32px;">

@@ -73,7 +73,7 @@ const NavBar = ({ setEvents, setLoading }) => {
             <span className="text-maroon font-display font-semibold text-sm">M</span>
           </div>
           <span className="font-display text-lg font-semibold text-maroon tracking-tight hidden sm:inline">
-            Gopher Events
+            Gopher Event
           </span>
         </Link>
 
@@ -115,6 +115,12 @@ const NavBar = ({ setEvents, setLoading }) => {
             className="hidden text-sm font-medium text-ink-soft transition-colors hover:text-maroon sm:inline"
           >
             Log in
+          </Link>
+          <Link
+            to="/signup"
+            className="hidden text-sm font-medium text-ink-soft transition-colors hover:text-maroon sm:inline"
+          >
+            Sign up
           </Link>
           <Link
             to="/events/create"

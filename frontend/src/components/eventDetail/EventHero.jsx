@@ -8,13 +8,16 @@ const EventHero = ({title, bannerUrl}) => {
         {bannerUrl && !bannerError ? (
           <img
             src={bannerUrl}
-            alt=""
+            alt={title}
             onError={() => setBannerError(true)}
             className="w-full h-full object-cover"
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-maroon via-[#a33c2d] to-gold" />
         )}
+        <div className="event-hero-overlay">
+          <h1>{title}</h1>
+        </div>
       </div>
     </div>
   );

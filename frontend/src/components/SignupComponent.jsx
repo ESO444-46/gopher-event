@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Spinner from "./SpinnerComponent";
 import api from "../api/axios";
-import GopherMessage from "./GopherMessage";
 import { Link, useNavigate } from "react-router-dom";
 import { useToast } from "../context/ToastContext";
 
@@ -52,19 +51,22 @@ const SignUpComponenet = ({
             <div className="mx-auto h-14 w-14 bg-white rounded-xl flex items-center justify-center shadow-lg mb-3">
               <span className="text-[#7a0019] font-bold text-xl">M</span>
             </div>
-            <h2 className="font-sans text-xl font-bold text-white">University of Minnesota</h2>
-            <p className="mt-1 text-[#ffcc33] text-xs font-semibold uppercase tracking-wider">Gopher Events</p>
+            <h2 className="font-sans text-xl font-bold text-white">Gopher Event</h2>
+            <p className="mt-1 text-[#ffcc33] text-xs font-semibold uppercase tracking-wider">Discover what’s happening</p>
+            <p className="auth-brand-note">Discover campus life, one event at a time.</p>
           </div>
 
           {/* Form */}
           <div className="px-8 py-8">
-            <div className="mb-5">
-              <GopherMessage
-                type="info"
-                message="Only @umn.edu emails are allowed for now!"
-              />
+            <div className="auth-form-heading">
+              <p className="auth-form-kicker">Join the community</p>
+              <h1>Create your account</h1>
+              <p>Create an account to start discovering events.</p>
             </div>
-            <form className="space-y-7" onSubmit={onSignupSubmit}>
+            <p className="signup-email-note">
+              Sign-up is currently available to <strong>eligible academic email addresses.</strong>
+            </p>
+            <form className="space-y-6" onSubmit={onSignupSubmit}>
               
               {/* First Name & Last Name — Side by Side */}
               <div className="grid grid-cols-2 gap-4">
@@ -124,7 +126,7 @@ const SignUpComponenet = ({
               {/* University Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5">
-                  University Email
+                  Email
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -138,7 +140,7 @@ const SignUpComponenet = ({
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="x500@umn.edu"
+                    placeholder="you@example.com"
                     required
                     className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7a0019] focus:border-[#7a0019] transition-colors sm:text-sm"
                   />
@@ -186,7 +188,7 @@ const SignUpComponenet = ({
               </button>
 
             </form>
-            <p className="mt-6 text-center text-sm text-ink-soft">
+            <p className="auth-account-link text-center text-sm text-ink-soft">
               Already have an account? <Link to="/login" className="font-semibold text-maroon">Log in</Link>
             </p>
           </div>

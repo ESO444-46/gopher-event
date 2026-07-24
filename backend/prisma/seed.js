@@ -134,7 +134,7 @@ async function main() {
         }),
         prisma.event.create({
             data: {
-                title: 'UMN Fall Hackathon 2026',
+                title: 'Fall Hackathon 2026',
                 description: 'A 24-hour hackathon where teams of up to 4 build projects from scratch. Prizes for best overall, best social impact, and best use of AI. Food and drinks provided throughout.',
                 venue: 'Coffman Memorial Union, Mississippi Room',
                 thumbnailUrl: IMAGES.hackathon,
@@ -159,7 +159,7 @@ async function main() {
         prisma.event.create({
             data: {
                 title: 'Open Source Contribution Sprint',
-                description: 'A 6-hour open source sprint where students contribute to real GitHub repositories. Maintainers from two Minnesota-based startups will be on-site to review PRs live.',
+                description: 'A 6-hour open source sprint where students contribute to real GitHub repositories. Startup maintainers will be on-site to review pull requests live.',
                 venue: 'Shepherd Labs, Room 131',
                 thumbnailUrl: IMAGES.openSource,
                 bannerUrl: IMAGES.openSource,

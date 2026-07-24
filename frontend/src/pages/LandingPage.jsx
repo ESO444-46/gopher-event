@@ -45,7 +45,7 @@ const LandingPage = () => {
         <div className="hero-inner">
           <div className="board-stack">
             <div className="notice flutter-in" style={{ "--rot": "-0.6deg", animationDelay: ".05s" }}>
-              <span className="eyebrow">University of Minnesota — Twin Cities</span>
+              <span className="eyebrow">Your events, in one place</span>
               <h1>Every flyer on campus.<br />One board.</h1>
               <p className="sub">
                 GopherEvent pulls every club meeting, guest talk, and free-pizza night into one
@@ -226,7 +226,7 @@ const LandingPage = () => {
           </div>
           <div className="foot-bottom">
             <span>gopherevent.com</span>
-            <span>© 2026 GopherEvent · University of Minnesota, Twin Cities</span>
+            <span>© 2026 GopherEvent</span>
           </div>
         </div>
       </footer>

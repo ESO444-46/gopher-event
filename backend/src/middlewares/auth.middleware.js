@@ -25,7 +25,10 @@ function authMiddleware(req, res, next) {
     } catch (err) {
         return res.status(401).json({
             success: false,
-            message: 'Invalid or expired token',
+            code: err.name === 'TokenExpiredError' ? 'TOKEN_EXPIRED' : 'INVALID_TOKEN',
+            message: err.name === 'TokenExpiredError'
+                ? 'Your session has expired. Please log in again.'
+                : 'Your session is no longer valid. Please log in again.',
         });
     }
 }

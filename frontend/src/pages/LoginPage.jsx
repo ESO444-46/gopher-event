@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import api from "../api/axios";
 import { useToast } from "../context/ToastContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const LoginPage = () => {
   const [isLoading, setLoading] = useState(false)
@@ -9,6 +9,20 @@ const LoginPage = () => {
   const [password, setPassword] = useState("")
   const { showToast } = useToast()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+
+  useEffect(() => {
+    const reason = searchParams.get("reason");
+    if (!reason) return;
+
+    showToast(
+      "info",
+      reason === "session-expired"
+        ? "Your session expired. Please log in again."
+        : "Your session is no longer valid. Please log in again."
+    );
+    navigate("/login", { replace: true });
+  }, [navigate, searchParams, showToast]);
 
 async function loginRequest(event){
     event.preventDefault();
@@ -66,19 +80,25 @@ async function loginRequest(event){
             <div className="mx-auto h-14 w-14 bg-white rounded-xl flex items-center justify-center shadow-lg mb-3">
               <span className="text-[#7a0019] font-bold text-xl">M</span>
             </div>
-            <h2 className="font-sans text-xl font-bold text-white">University of Minnesota</h2>
-            <p className="mt-1 text-[#ffcc33] text-xs font-semibold uppercase tracking-wider">Gopher Events</p>
+            <h2 className="font-sans text-xl font-bold text-white">Gopher Event</h2>
+            <p className="mt-1 text-[#ffcc33] text-xs font-semibold uppercase tracking-wider">Discover what’s happening</p>
+            <p className="auth-brand-note">Discover campus life, one event at a time.</p>
           </div>
 
             {/* Form */}
             <div className="px-8 py-8">
+            <div className="auth-form-heading">
+              <p className="auth-form-kicker">Welcome back</p>
+              <h1>Sign in to Gopher Event</h1>
+              <p>Find your next campus moment.</p>
+            </div>
 
             <form className="space-y-5" onSubmit={loginRequest}>
               
               {/* Email */}
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-1.5">
-                  University Email
+                  Email
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -91,7 +111,7 @@ async function loginRequest(event){
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="x500@umn.edu"
+                    placeholder="you@example.com"
                     className="block w-full pl-10 pr-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#7a0019] focus:border-[#7a0019] transition-colors sm:text-sm"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
@@ -138,8 +158,8 @@ async function loginRequest(event){
               </button>
 
             </form>
-            <p className="mt-6 text-center text-sm text-ink-soft">
-              New to Gopher Events? <Link to="/signup" className="font-semibold text-maroon">Create an account</Link>
+            <p className="auth-account-link text-center text-sm text-ink-soft">
+              New to Gopher Event? <Link to="/signup" className="font-semibold text-maroon">Create an account</Link>
             </p>
           </div>
         </div>

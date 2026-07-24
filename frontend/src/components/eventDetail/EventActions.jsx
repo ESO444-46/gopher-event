@@ -3,11 +3,13 @@ import Spinner from "./Spinner";
 import api from "../../api/axios";
 import { useToast } from "../../context/ToastContext";
 import CapacityDisplay from "../../pages/CapacityDisplay";
+import { Link } from "react-router-dom";
 
 const EventActions = ({ eventId, publicId, capacity, totalRSVPs }) => {
   const [loading, setLoading] = useState(false);
   const [rsvp, setRsvp] = useState(false);
   const { showToast } = useToast();
+  const isAuthenticated = Boolean(localStorage.getItem("token"));
   
   async function handleRsvp() {
     setLoading(true);
@@ -40,7 +42,7 @@ const EventActions = ({ eventId, publicId, capacity, totalRSVPs }) => {
           </span>
         </div>
 
-        <button
+        {isAuthenticated ? <button
           onClick={handleRsvp}
           disabled={loading || rsvp}
           className={`w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold text-white transition-all shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:translate-y-0
@@ -69,7 +71,17 @@ const EventActions = ({ eventId, publicId, capacity, totalRSVPs }) => {
               Reserve your spot
             </>
           )}
-        </button>
+        </button> : (
+          <Link
+            to="/login"
+            className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl text-sm font-bold text-white bg-maroon shadow-md transition-all hover:bg-maroon-dark hover:shadow-lg hover:-translate-y-0.5"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            Log in to reserve
+          </Link>
+        )}
         <CapacityDisplay registered={totalRSVPs} capacity={capacity}/>
       </div>
     </div>

@@ -1,11 +1,11 @@
 const EventDescription = ({description}) => {
   return (
-    <div className="space-y-4">
-      <h2 className="font-sans text-xl font-bold text-ink">About this event</h2>
-      <div className="space-y-4 text-ink-soft leading-relaxed">
+    <section className="event-detail-section">
+      <h2 className="event-detail-heading">About this event</h2>
+      <div className="event-detail-copy">
         {description}
       </div>
-    </div>
+    </section>
   );
 };
 

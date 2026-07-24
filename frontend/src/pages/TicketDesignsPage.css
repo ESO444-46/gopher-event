@@ -1,0 +1,2 @@
+.ticket-page{min-height:100vh;background:#f7f2e9;color:#2a2320;padding:clamp(2rem,5vw,5rem) 1.25rem 4rem;}
+.ticket-page-intro{max-width:48rem;margin:0 auto 2.5rem;text-align:center;}.ticket-page-kicker{margin:0;color:#a46d00;font-size:.73rem;font-weight:800;letter-spacing:.14em;}.ticket-page h1{margin:.45rem 0 .65rem;color:#7a0019;font-family:'Fraunces',Georgia,serif;font-size:clamp(2.2rem,5vw,4rem);line-height:1;}.ticket-page-intro > p:last-child{margin:0;color:#6b5f56;font-size:1rem;line-height:1.6;}.ticket-pass-preview{display:flex;justify-content:center;}

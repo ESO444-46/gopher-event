@@ -14,10 +14,3 @@ module.exports = {
     generateAccessToken
 }
 
-/*
-
-    {
-        userId: 5,
-        email: "varshith.vajinapelli@umn.edu"
-    }
-*/

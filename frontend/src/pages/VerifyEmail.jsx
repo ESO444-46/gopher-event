@@ -12,7 +12,7 @@ const VerifyEmail = () => {
   const [isLoading, setLoading] = useState(false)
   const { showToast } = useToast()
 
-  const email = location.state?.email || "yourname@umn.edu"
+  const email = location.state?.email || "you@example.com"
   const { inputsRef, handleInput, handleKeyDown, handlePaste } = useOtpInputs();
 
   const verifyOtp = async function(event){
@@ -60,8 +60,9 @@ const VerifyEmail = () => {
             </div>
             <h2 className="font-sans text-xl font-bold text-white">Verify Your Email</h2>
             <p className="mt-1 text-[#ffcc33] text-xs font-semibold uppercase tracking-wider">
-              Gopher Events
+              Gopher Event
             </p>
+            <p className="auth-brand-note">Discover campus life, one event at a time.</p>
           </div>
       
           {/* Core Content Form */}

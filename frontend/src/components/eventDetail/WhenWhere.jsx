@@ -16,13 +16,11 @@ const WhenWhere = ({ startsAt, endsAt, venue }) => {
   });
 
   return (
-    <div>
-      <h2 className="font-sans text-xl font-bold text-ink mb-4">When & Where</h2>
+    <section className="event-detail-section">
+      <h2 className="event-detail-heading">When & Where</h2>
 
-      <div className="pt-4"></div>
-
-      <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="event-detail-when-content">
+      <div className="event-detail-date-grid">
         {/* Starts */}
         <div className="p-5 rounded-2xl border border-line bg-paper space-y-3">
           <div className="flex items-center gap-2">
@@ -57,7 +55,7 @@ const WhenWhere = ({ startsAt, endsAt, venue }) => {
       </div>
 
       {/* Venue */}
-      <div className="p-5 rounded-2xl border border-line bg-paper">
+      <div className="event-detail-venue p-5 rounded-2xl border border-line bg-paper">
         <div className="flex items-start gap-3">
           <div className="h-8 w-8 rounded-lg bg-maroon/10 flex items-center justify-center flex-shrink-0 mt-0.5">
             <svg className="h-4 w-4 text-maroon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -72,7 +70,7 @@ const WhenWhere = ({ startsAt, endsAt, venue }) => {
         </div>
       </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -34,6 +34,20 @@ const EventDetailPage = () => {
       fetchEvent()
   },[publicId])
 
+  useEffect(() => {
+    if (!details) return;
+
+    const title = `${details.title} | Gopher Event`;
+    const description = details.description || "Discover this event on Gopher Event.";
+    document.title = title;
+
+    document.querySelector('meta[name="description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", description);
+    document.querySelector('meta[property="og:url"]')?.setAttribute("content", window.location.href);
+    document.querySelector('link[rel="canonical"]')?.setAttribute("href", window.location.href);
+  }, [details]);
+
   if (error) return <div>
     Something went wrong
   </div>
@@ -54,14 +68,14 @@ const EventDetailPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Left Column */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 event-detail-content">
 
             <EventDescription
              description = {details.description}
             />
 
             {/* Divider */}
-            <div className="border-t border-line" />
+            <div className="event-detail-divider" />
 
             <WhenWhere
               startsAt = {details.startsAt}
@@ -70,7 +84,7 @@ const EventDetailPage = () => {
             />
 
             {/* Divider */}
-            <div className="border-t border-line" />
+            <div className="event-detail-divider" />
             <EventCreator
              firstName={details.creator.firstName}
              lastName={details.creator.lastName}

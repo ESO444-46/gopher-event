@@ -8,6 +8,8 @@ import EventsPage from "./pages/EventsPage";
 import CreateEvent from "./pages/CreateEvent";
 import EventDetailPage from "./pages/EventDetailPage";
 import LandingPage from "./pages/LandingPage";
+import TicketDesignsPage from "./pages/TicketDesignsPage";
+import CheckInPage from "./pages/CheckInPage";
 
 const App = () => {
   return (
@@ -15,6 +17,8 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage/>} />
+          <Route path="/ticket-designs" element={<TicketDesignsPage/>} />
+          <Route path="/check-in" element={<CheckInPage/>} />
           {/* Authentication Routes */}
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/verify-email" element={<VerifyEmail />} />
