@@ -1,3 +1,5 @@
+> **Deprecated:** This file has been replaced by [authentication.md](authentication.md), which includes the current signup, OTP verification, login, and protected-route behavior.
+
 ## POST /auth/signup
 
 ### purpose
