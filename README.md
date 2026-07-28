@@ -45,4 +45,6 @@ The frontend runs on `http://localhost:5173` and the API runs on `http://localho
 | Document | Description |
 | --- | --- |
 | [Architecture](docs/architecture.md) | How the frontend, API, and database fit together |
+| [Database](docs/database.md) | Prisma models, migrations, and seed data |
+| [Deployment](docs/deployment.md) | Frontend, backend, and CORS deployment notes |
 | [API documentation](docs/api/README.md) | Available API routes |
