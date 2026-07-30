@@ -1,6 +1,7 @@
 const authService = require('../services/auth.service')
 const { signupSchema, loginSchema, otpSchema } = require('../schemas/auth.schema');
 const SendEmail = require('../utils/email');
+const { welcomeEmail } = require('../utils/emailTemplates');
 
 async function signup(req, res) {
 
@@ -96,22 +97,7 @@ async function verifyOtp(req, res) {
 
         await SendEmail({
             to: user.email,
-            text: "Your email is verified and your Gopher Event account is ready. Explore upcoming events whenever you're ready.",
-            subject: "Welcome to Gopher Event",
-            html: `
-      <div style="margin:0;padding:32px 16px;background:#FAF6EE;font-family:Arial,sans-serif;color:#2A2320;">
-        <div style="max-width:600px;margin:0 auto;background:#FFFDF9;border:1px solid #E4DACB;border-radius:16px;overflow:hidden;">
-          <div style="padding:28px 32px;background:#7A0019;border-bottom:4px solid #FFC72C;">
-            <p style="margin:0;color:#FFC72C;font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;">Gopher Event</p>
-            <h1 style="margin:10px 0 0;color:#FFFDF9;font-family:Georgia,serif;font-size:28px;line-height:1.2;">Welcome to Gopher Event.</h1>
-          </div>
-          <div style="padding:32px;">
-            <p style="margin:0 0 16px;font-size:16px;line-height:1.6;">Your email is verified and your account is ready to go.</p>
-            <p style="margin:0;color:#6b5f56;font-size:15px;line-height:1.6;">Explore upcoming campus events, reserve your spot, and find something worth putting on your calendar.</p>
-          </div>
-        </div>
-      </div>
-    `,
+            ...welcomeEmail()
         });
 
         res.json({

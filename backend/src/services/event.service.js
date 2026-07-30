@@ -1,5 +1,3 @@
-const { success } = require('zod')
-const { event } = require('../prisma/client')
 const eventRepo = require('../repositories/event.repo')
 const userEventRepo = require('../repositories/userEvent.repo')
 
@@ -50,30 +48,10 @@ async function registerUserForEvent({ userId, publicId }) {
 
 }
 
-async function getMyCreatedEvents(userId) {
-    return eventRepo.findEventsByCreatorId(userId)
-}
-
-async function getEventAttendees(publicId, userId) {
-    const event = await eventRepo.findByPublicIdAndCreatorId(publicId, userId)
-
-    if (!event) {
-        // TODO: replace with HttpError during error-handling refactor
-        const err = new Error('Event not found')
-        err.code = 'EVENT_NOT_FOUND'
-        throw err
-    }
-
-    const rows = await userEventRepo.findAttendeesByEventId(event.id)
-    return rows.map(r => r.user)
-}
-
 module.exports = {
     createEvent,
     updateEvent,
     getEvents,
     getEventByPublicId,
-    registerUserForEvent,
-    getMyCreatedEvents,
-    getEventAttendees
+    registerUserForEvent
 }

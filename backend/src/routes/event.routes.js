@@ -8,12 +8,6 @@ router.get('/', eventController.getEvents)
 
 router.get('/:publicId', eventController.getEventByPublicId)
 
-//router.get('/me/created', authMiddleware, eventController.getMyCreatedEvents)
-
-//router.get('/me/registered', authMiddleware, eventController.getMyRegisteredEvents)
-
-//router.get('/:publicId/attendees', authMiddleware, eventController.getEventAttendees)
-
 router.post('/', authMiddleware, requireOrganizer, eventController.createEvent)
 
 router.put('/:publicId', authMiddleware, eventController.updateEvent)

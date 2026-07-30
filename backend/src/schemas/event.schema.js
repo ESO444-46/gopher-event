@@ -44,16 +44,9 @@ const createEvent = z.object({
         }
     })
 
-/**
- * @deprecated Use EventPublicIdParamSchema
- */
-const EventParamSchema = z.object({
-    publicId: z.uuid()
-})
-
 const EventPublicIdParamSchema = z.object({
     publicId: z.uuid()
 })
 module.exports = {
-    createEvent, EventParamSchema, EventPublicIdParamSchema
+    createEvent, EventPublicIdParamSchema
 }

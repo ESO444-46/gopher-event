@@ -1,7 +1,4 @@
-// Resend is the class from the library!
 const { Resend } = require('resend');
-const dotenv = require('dotenv');
-dotenv.config(); // loads the env file into the process.env!
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
